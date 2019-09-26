@@ -1,5 +1,3 @@
-os: linux
-dist: bionic
 language: cpp
 
 cache: # see https://docs.travis-ci.com/user/caching/
@@ -18,6 +16,12 @@ addons:
       - libavcodec-dev
       - libavutil-dev
       
+matrix:
+  include:
+  - os: linux
+    dist: bionic
+  - os: windows
+  
 script: ./build_and_install.sh
 
 git:
