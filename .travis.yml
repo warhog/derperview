@@ -22,7 +22,10 @@ matrix:
     dist: bionic
   - os: windows
   
-script: ./build_and_install.sh
+script: ./build_travis.sh
+
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install ffmpeg; fi
 
 git:
   depth: 1
