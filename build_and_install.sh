@@ -22,7 +22,7 @@ fi
 
 CMAKE_GENERATOR=""
 if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
-    cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release ${INSTALL_PREFIX}
+    cmake ../ -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_BUILD_TYPE=Release ${INSTALL_PREFIX}
     if [[ $? -ne 0 ]]; then
         echo "cmake configuration failed"
         cat CMakeFiles/CMakeOutput.log
