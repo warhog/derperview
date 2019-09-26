@@ -8,8 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if (LINUX)
     set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
     set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+    find_package(Threads)
 endif()
-find_package(Threads)
 
 # try to find libswscale
 find_library(LIBSWSCALE swscale)
