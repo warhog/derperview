@@ -54,6 +54,7 @@ find_package(Git QUIET)
 if(NOT GIT_FOUND)
     message(FATAL_ERROR "git not found")
 endif()
+message(STATUS "git exe: ${GIT_EXECUTABLE}")
 execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags --dirty=-dirty
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
     RESULT_VARIABLE GIT_RESULT
