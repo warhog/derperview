@@ -26,7 +26,10 @@ matrix:
 script: ./build_and_install.sh
 
 before_install:
+  # for osx install ffmpeg libs using brew
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
+
+  # for windows install ffmpeg libs from the sources
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then wget https://ffmpeg.zeranoe.com/builds/win64/dev/ffmpeg-4.2.1-win64-dev.zip; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then 7z x -y ffmpeg-4.2.1-win64-dev.zip; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then mv ffmpeg-4.2.1-win64-dev ffmpeg-dev-windows; fi
