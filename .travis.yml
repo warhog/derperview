@@ -30,6 +30,8 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then wget https://ffmpeg.zeranoe.com/builds/win64/dev/ffmpeg-4.2.1-win64-dev.zip; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then 7z x -y ffmpeg-4.2.1-win64-dev.zip; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then mv ffmpeg-4.2.1-win64-dev ffmpeg-dev-windows; fi
+  - echo ${PATH}
+#  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then PATH=$(echo "$PATH" | sed -e 's/:\///'); fi
 
 git:
   depth: 1
@@ -45,4 +47,4 @@ deploy:
   overwrite: true
   on:
     tags: true
-    branch: master
+

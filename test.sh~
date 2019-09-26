@@ -1,0 +1,7 @@
+#!/bin/sh
+
+TTT="/home/tobi:/home/bernd:/home/nutte"
+echo $TTT
+TTT=$(echo "${TTT}" | sed -e 's/:\/home\/nutte$//')
+
+echo $TTT
