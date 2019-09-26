@@ -23,13 +23,13 @@ matrix:
   - os: osx
   - os: windows
   
-script: ./build_and_install.sh
+script: ./ci-scripts/build_and_install.sh
 
 before_install:
-  # for osx install ffmpeg libs using brew
+  # for osx get ffmpeg libs using brew
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
 
-  # for windows install ffmpeg libs from the sources
+  # for windows get ffmpeg libs from the sources
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ./ci-scripts/download-ffmpeg-windows.sh; fi
 
 git:
