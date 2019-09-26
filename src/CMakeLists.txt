@@ -1,4 +1,4 @@
-add_executable(${CMAKE_PROJECT_NAME} Main.cpp Process.cpp Video.cpp)
+add_executable(${CMAKE_PROJECT_NAME} Main.cpp Process.cpp Video.cpp ${VERSION_FILE})
 
 if (UNIX)
     target_link_libraries(${CMAKE_PROJECT_NAME} Threads::Threads ${LIBAVUTIL} ${LIBAVCODEC} ${LIBAVFORMAT})

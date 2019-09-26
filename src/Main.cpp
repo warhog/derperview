@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "Process.hpp"
 #include "Video.hpp"
+#include "version.hpp"
 #include "cxxopts.hpp"
 
 using namespace std;
@@ -158,7 +159,7 @@ void SuppressLibAvOutput(void *careface, int whatevs, const char *pfff, va_list 
 
 int main(int argc, char **argv)
 {
-    cout << "derperview v0.6.1" << endl << endl;
+    cout << "derperview " << VERSION << endl << endl;
 
     options.add_options()
         ("i,input", "Input filename", cxxopts::value<std::string>())
