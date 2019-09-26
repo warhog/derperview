@@ -14,6 +14,10 @@ addons:
       - cmake-data
       - cmake
       - lcov
+      - libswscale-dev
+      - libavformat-dev
+      - libavcodec-dev
+      - libavutil-dev
       
 script: ./build_and_install.sh
 
@@ -27,4 +31,7 @@ after_success:
   # output coverage data for debugging (optional)
   - lcov --list coverage.info
 
+git:
+  depth: 1
+  quiet: true
 
