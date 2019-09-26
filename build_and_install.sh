@@ -12,7 +12,7 @@ mkdir build
 cd build
 
 echo "run cmake for out of source build"
-INSTALL_PREFIX=
+INSTALL_PREFIX=""
 if [[ ${EUID} -eq 0 ]]; then
     echo "script is run as root, start installation to local system bin dir"
 else
@@ -20,9 +20,9 @@ else
     INSTALL_PREFIX=-DCMAKE_INSTALL_PREFIX=../
 fi
 
-CMAKE_GENERATOR=
+CMAKE_GENERATOR=""
 if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
-    CMAKE_GENERATOR=-G "MinGW Makefiles"
+    CMAKE_GENERATOR="-G \"MinGW Makefiles\""
 fi
 
 cmake ../ -DCMAKE_BUILD_TYPE=Release ${CMAKE_GENERATOR} ${INSTALL_PREFIX}
