@@ -59,9 +59,10 @@ execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags --dirty=-dirty
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
     RESULT_VARIABLE GIT_RESULT
     OUTPUT_VARIABLE GIT_OUTPUT
-    ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
+    ERROR_VARIABLE GIT_ERROR
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
 if(NOT GIT_RESULT EQUAL 0)
-    message(FATAL_ERROR "cannot run git describe: ${GIT_RESULT}")
+    message(FATAL_ERROR "cannot run git describe: ${GIT_RESULT} - ${GIT_ERROR}")
 endif()
 set(VERSION "${GIT_OUTPUT}")
 message(STATUS "version: ${VERSION}")
