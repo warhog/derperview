@@ -30,7 +30,7 @@ deploy:
   api_key: $GITHUB_TOKEN  # set as env variable in the travis build settings page
   file: bin/derperview
   keep_history: true
-  draft: true
+  prerelease: true
   overwrite: true
   on:
     tags: true
