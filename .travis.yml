@@ -34,7 +34,6 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ./ci-scripts/download-ffmpeg-windows.sh; fi
 
 git:
-  depth: 1
   quiet: true
 
 before_deploy:

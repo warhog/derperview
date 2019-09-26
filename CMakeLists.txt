@@ -54,15 +54,14 @@ find_package(Git QUIET)
 if(NOT GIT_FOUND)
     message(FATAL_ERROR "git not found")
 endif()
-message(STATUS "git exe: ${GIT_EXECUTABLE}")
-execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags --dirty=-dirty
+execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags --always --dirty=-dirty
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
     RESULT_VARIABLE GIT_RESULT
     OUTPUT_VARIABLE GIT_OUTPUT
     ERROR_VARIABLE GIT_ERROR
     OUTPUT_STRIP_TRAILING_WHITESPACE)
 if(NOT GIT_RESULT EQUAL 0)
-    message(FATAL_ERROR "cannot run git describe: ${GIT_RESULT} - ${GIT_ERROR}")
+    message(FATAL_ERROR "cannot git describe: ${GIT_RESULT} - ${GIT_ERROR}")
 endif()
 set(VERSION "${GIT_OUTPUT}")
 message(STATUS "version: ${VERSION}")
