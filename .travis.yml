@@ -25,9 +25,13 @@ git:
   quiet: true
 
 deploy:
-  provider: pages
+  provider: releases
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # set as env variable in the travis build settings page
+  api_key: $GITHUB_TOKEN  # set as env variable in the travis build settings page
+  file: bin/derperview
   keep_history: true
+  draft: true
+  overwrite: true
   on:
+    tags: true
     branch: master
