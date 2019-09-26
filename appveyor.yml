@@ -6,7 +6,10 @@ platform:
   - x64
   
 install:
-  - cinst ffmpeg
+#  - cinst ffmpeg
+  - ps: (new-object System.Net.WebClient).Downloadfile("https://ffmpeg.zeranoe.com/builds/win64/dev/ffmpeg-4.2.1-win64-dev.zip", "%APPVEYOR_BUILD_FOLDER%\ffmpeg-4.2.1-win64-dev.zip")
+  - 7z x -y "%APPVEYOR_BUILD_FOLDER%\ffmpeg-4.2.1-win64-dev.zip" -o"%APPVEYOR_BUILD_FOLDER%\lib" > nul
+  - tree %APPVEYOR_BUILD_FOLDER%
   
 configuration:
   - Release
