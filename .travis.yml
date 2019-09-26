@@ -1,0 +1,30 @@
+os: linux
+dist: bionic
+language: cpp
+
+cache: # see https://docs.travis-ci.com/user/caching/
+  - directories:
+    - $HOME/.cache
+  
+addons:
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake-data
+      - cmake
+      - lcov
+      
+script: ./build_and_install.sh
+
+after_success:
+  # Create lcov report
+  # capture coverage info
+  - lcov --directory . --capture --output-file coverage.info
+  # filter out system and extra files.
+  # to also not include test code in coverage add them with full path to the patterns '*/tests/*'
+  - lcov --remove coverage.info '/usr/*' "${HOME}"'/.cache/*' --output-file coverage.info
+  # output coverage data for debugging (optional)
+  - lcov --list coverage.info
+
+
