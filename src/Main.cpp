@@ -105,9 +105,15 @@ int Go(const string inputFilename, const string outputFilename, const int totalT
                     frameCount++;
 
                     if (frameCount % percentageMarker == 0)
+                    {
                         cout << " " << ceil(static_cast<float>(frameCount) * 100 / inputVideoInfo.totalFrames) << "% ";
+                        cout.flush();
+                    }
                     else if (frameCount % 5 == 0)
+                    {
                         cout << ".";
+                        cout.flush();
+                    }
                 }
 
                 threadIndex = 0;
