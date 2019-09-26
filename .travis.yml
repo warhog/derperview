@@ -28,7 +28,7 @@ script: ./ci-scripts/build_and_install.sh
 
 before_install:
   # for osx get ffmpeg libs using brew
-  - travis_wait if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
 
   # for windows get ffmpeg libs from the sources
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ./ci-scripts/download-ffmpeg-windows.sh; fi
