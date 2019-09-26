@@ -25,7 +25,6 @@ matrix:
 script: ./build_and_install.sh
 
 before_install:
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install cmake; fi
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
 
 git:
