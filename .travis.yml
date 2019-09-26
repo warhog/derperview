@@ -20,12 +20,13 @@ matrix:
   include:
   - os: linux
     dist: bionic
-  - os: windows
+  - os: osx
   
-script: ./build_travis.sh
+script: ./build_and_install.sh
 
 before_install:
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install ffmpeg; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install cmake; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
 
 git:
   depth: 1

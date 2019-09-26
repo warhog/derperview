@@ -12,16 +12,27 @@ mkdir build
 cd build
 
 echo "run cmake for out of source build"
+INSTALL_PREFIX=
 if [[ ${EUID} -eq 0 ]]; then
     echo "script is run as root, start installation to local system bin dir"
-    cmake ../ -DCMAKE_BUILD_TYPE=Release
 else
     echo "script was not run as root, install to local bin dir"
-    cmake ../  -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../
+    INSTALL_PREFIX=-DCMAKE_INSTALL_PREFIX=../
+fi
+
+cmake ../ -DCMAKE_BUILD_TYPE=Release ${INSTALL_PREFIX}
+if [[ $? -ne 0 ]]; then
+    echo "cmake configuration failed"
+    cat CMakeFiles/CMakeError.log
+    exit 1
 fi
 
 echo "running build"
 cmake --build .
+if [[ $? -ne 0 ]]; then
+    echo "build failed"
+    exit 1
+fi
 
 echo "installing built binaries"
 make install
