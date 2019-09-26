@@ -30,16 +30,17 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
 
   # for windows install ffmpeg libs from the sources
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then wget https://ffmpeg.zeranoe.com/builds/win64/dev/ffmpeg-4.2.1-win64-dev.zip; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then 7z x -y ffmpeg-4.2.1-win64-dev.zip; fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then mv ffmpeg-4.2.1-win64-dev ffmpeg-dev-windows; fi
-
-after_success:
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then tree .; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ./ci-scripts/download-ffmpeg-windows.sh; fi
 
 git:
   depth: 1
   quiet: true
+
+before_deploy:
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then mv bin/derperview bin/derperview.app; fi
+
+  # for windows get shared ffmpeg libs from the sources
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ./ci-scripts/package-windows.sh ; fi
 
 deploy:
   provider: releases
