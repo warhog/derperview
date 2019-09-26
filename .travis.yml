@@ -13,7 +13,6 @@ addons:
     packages:
       - cmake-data
       - cmake
-      - lcov
       - libswscale-dev
       - libavformat-dev
       - libavcodec-dev
@@ -21,17 +20,14 @@ addons:
       
 script: ./build_and_install.sh
 
-after_success:
-  # Create lcov report
-  # capture coverage info
-  - lcov --directory . --capture --output-file coverage.info
-  # filter out system and extra files.
-  # to also not include test code in coverage add them with full path to the patterns '*/tests/*'
-  - lcov --remove coverage.info '/usr/*' "${HOME}"'/.cache/*' --output-file coverage.info
-  # output coverage data for debugging (optional)
-  - lcov --list coverage.info
-
 git:
   depth: 1
   quiet: true
 
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # set as env variable in the travis build settings page
+  keep_history: true
+  on:
+    branch: master
