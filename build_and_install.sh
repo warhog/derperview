@@ -20,9 +20,15 @@ else
     INSTALL_PREFIX=-DCMAKE_INSTALL_PREFIX=../
 fi
 
-cmake ../ -DCMAKE_BUILD_TYPE=Release ${INSTALL_PREFIX}
+CMAKE_GENERATOR=
+if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
+    CMAKE_GENERATOR=-G "MinGW Makefiles"
+fi
+
+cmake ../ -DCMAKE_BUILD_TYPE=Release ${CMAKE_GENERATOR} ${INSTALL_PREFIX}
 if [[ $? -ne 0 ]]; then
     echo "cmake configuration failed"
+    cat CMakeFiles/CMakeOutput.log
     cat CMakeFiles/CMakeError.log
     exit 1
 fi
@@ -35,5 +41,4 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "installing built binaries"
-make install
-
+cmake --build . --target install
