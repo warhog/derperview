@@ -33,8 +33,6 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then wget https://ffmpeg.zeranoe.com/builds/win64/dev/ffmpeg-4.2.1-win64-dev.zip; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then 7z x -y ffmpeg-4.2.1-win64-dev.zip; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then mv ffmpeg-4.2.1-win64-dev ffmpeg-dev-windows; fi
-  # remove sh.exe from path for windows, else cmake will complain about this
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then PATH=$(echo "$PATH" | sed -e 's/:\/c\/Program Files\/Git\/cmd//'); fi
 
 git:
   depth: 1
