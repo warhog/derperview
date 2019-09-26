@@ -12,9 +12,18 @@ mkdir build
 cd build
 
 cmake ../  -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../
+if [[ $? -ne 0 ]]; then
+    echo "cmake configuration failed"
+    cat CMakeFiles/CMakeError.log
+    exit 1
+fi
 
 echo "running build"
 cmake --build .
+if [[ $? -ne 0 ]]; then
+    echo "build failed"
+    exit 1
+fi
 
 echo "installing built binaries"
 make install
