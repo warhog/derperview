@@ -5,10 +5,15 @@ project(derperview VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if (UNIX)
+if(UNIX)
     set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
     set(THREADS_PREFER_PTHREAD_FLAG TRUE)
     find_package(Threads)
+endif()
+
+if(WIN32)
+    set(CMAKE_LIBRARY_PATH "${PROJECT_SOURCE_DIR}/ffmpeg-dev-windows/lib")
+    include_directories("${PROJECT_SOURCE_DIR}/ffmpeg-dev-windows/include")
 endif()
 
 # try to find libswscale
