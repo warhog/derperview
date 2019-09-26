@@ -34,6 +34,9 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then 7z x -y ffmpeg-4.2.1-win64-dev.zip; fi
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then mv ffmpeg-4.2.1-win64-dev ffmpeg-dev-windows; fi
 
+after_success:
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then tree .; fi
+
 git:
   depth: 1
   quiet: true

@@ -49,6 +49,3 @@ fi
 echo "installing built binaries"
 cmake --build . --target install
 
-if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
-    tree ..
-fi
