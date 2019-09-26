@@ -22,7 +22,7 @@ fi
 
 CMAKE_GENERATOR=""
 if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
-    CMAKE_GENERATOR="-G \"MinGW Makefiles\""
+    CMAKE_GENERATOR='-G "MinGW Makefiles"'
 fi
 
 cmake ../ -DCMAKE_BUILD_TYPE=Release ${CMAKE_GENERATOR} ${INSTALL_PREFIX}
