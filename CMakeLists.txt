@@ -60,7 +60,7 @@ execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags --dirty=-dirty
     OUTPUT_VARIABLE GIT_OUTPUT
     ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
 if(NOT GIT_RESULT EQUAL 0)
-    message(FATAL_ERROR "cannot run git describe")
+    message(FATAL_ERROR "cannot run git describe: ${GIT_RESULT}")
 endif()
 set(VERSION "${GIT_OUTPUT}")
 message(STATUS "version: ${VERSION}")
