@@ -22,15 +22,21 @@ fi
 
 CMAKE_GENERATOR=""
 if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
-    CMAKE_GENERATOR='-G "MinGW Makefiles"'
-fi
-
-cmake ../ -DCMAKE_BUILD_TYPE=Release ${CMAKE_GENERATOR} ${INSTALL_PREFIX}
-if [[ $? -ne 0 ]]; then
-    echo "cmake configuration failed"
-    cat CMakeFiles/CMakeOutput.log
-    cat CMakeFiles/CMakeError.log
-    exit 1
+    cmake ../ -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release ${INSTALL_PREFIX}
+    if [[ $? -ne 0 ]]; then
+        echo "cmake configuration failed"
+        cat CMakeFiles/CMakeOutput.log
+        cat CMakeFiles/CMakeError.log
+        exit 1
+    fi
+else
+    cmake ../ -DCMAKE_BUILD_TYPE=Release ${INSTALL_PREFIX}
+    if [[ $? -ne 0 ]]; then
+        echo "cmake configuration failed"
+        cat CMakeFiles/CMakeOutput.log
+        cat CMakeFiles/CMakeError.log
+        exit 1
+    fi
 fi
 
 echo "running build"
