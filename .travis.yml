@@ -20,14 +20,15 @@ matrix:
   include:
   - os: linux
     dist: bionic
-  - os: osx
+# disabled due to homebrew update taking too long and aborting builds
+#  - os: osx
   - os: windows
   
 script: ./ci-scripts/build_and_install.sh
 
 before_install:
   # for osx get ffmpeg libs using brew
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
+  - travis_wait if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew install ffmpeg; fi
 
   # for windows get ffmpeg libs from the sources
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then ./ci-scripts/download-ffmpeg-windows.sh; fi
