@@ -15,6 +15,7 @@ addons:
       - libavformat-dev
       - libavcodec-dev
       - libavutil-dev
+      - tree
       
 matrix:
   include:
