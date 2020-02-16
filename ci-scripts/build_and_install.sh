@@ -31,23 +31,13 @@ fi
 
 
 if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
-    echo dir
-    dir
-    echo ..
-    dir ..
-    echo ../..
-    dir ../..
-    echo ../../bin
-    dir ../../bin
     # create bin/Release folder on windows builds
-    mkdir -p ../../bin/Release
+    mkdir -p ../bin/Release
 fi
 
 echo "running build"
 cmake --build .
-RET=$?
-echo "ret: ${RET}"
-if [[ ${RET} -ne 0 ]]; then
+if [[ $? -ne 0 ]]; then
     echo "build failed"
     exit 1
 fi
