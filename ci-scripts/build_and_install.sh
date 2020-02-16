@@ -31,9 +31,13 @@ fi
 
 
 if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
-    dir    
+    echo dir
+    dir
+    echo ..
     dir ..
+    echo ../..
     dir ../..
+    echo ../../bin
     dir ../../bin
     # create bin/Release folder on windows builds
     mkdir -p ../../bin/Release
