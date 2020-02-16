@@ -42,7 +42,7 @@ tree ..
 
 if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
     # create bin/Release folder on windows builds
-    mkdir ../bin/Release
+    mkdir ../../bin/Release
 fi
 
 echo "installing built binaries"

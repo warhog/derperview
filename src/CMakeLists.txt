@@ -6,6 +6,7 @@ else()
     target_link_libraries(${CMAKE_PROJECT_NAME} ${LIBAVUTIL} ${LIBAVCODEC} ${LIBAVFORMAT})
 endif()
 
+message(STATUS "PATHTEST: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIGURATION>")
 if(WIN32)
     add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy 
