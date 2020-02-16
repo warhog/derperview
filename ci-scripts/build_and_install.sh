@@ -31,17 +31,20 @@ fi
 
 echo "running build"
 cmake --build .
-if [[ $? -ne 0 ]]; then
+RET=$?
+echo "ret: ${RET}"
+if [[ ${RET} -ne 0 ]]; then
     echo "build failed"
     exit 1
 fi
+
+tree ..
 
 if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
     # create bin/Release folder on windows builds
     mkdir ../bin/Release
 fi
 
-tree ..
 echo "installing built binaries"
 cmake --build . --target install
 if [[ $? -ne 0 ]]; then
