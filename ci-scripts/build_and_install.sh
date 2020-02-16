@@ -41,7 +41,7 @@ if [[ "${TRAVIS_OS_NAME}" == "windows" ]]; then
     mkdir ../bin/Release
 fi
 
-tree
+tree ..
 echo "installing built binaries"
 cmake --build . --target install
 if [[ $? -ne 0 ]]; then
